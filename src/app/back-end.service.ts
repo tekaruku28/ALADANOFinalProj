@@ -14,17 +14,17 @@ export class BackEndService {
 
   constructor(private postService: PostService, private http: HttpClient) { }
 
-
+  
   saveData(){
     const listofPosts: Post[] = this.postService.getPost();
-    this.http.put('https://sampleproj-4fd38-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json', listofPosts)
+    this.http.put('https://aladanoangularproj-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json', listofPosts)
     .subscribe((res)=>{
       console.log(res);
     })
   }
 
   fetchData(){
-     return this.http.get<Post[]>('https://sampleproj-4fd38-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json')
+     return this.http.get<Post[]>('https://aladanoangularproj-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json')
       .pipe(tap((listsOfPosts: Post[]) => {
         console.log(listsOfPosts);
         this.postService.setPosts(listsOfPosts);
@@ -35,7 +35,7 @@ export class BackEndService {
 
   updateData(index: number, updatedPost: Post) {
         this.postService.updatePost(index, updatedPost);
-    this.http.put(`https://asia-southeast1.firebasedatabase.app/posts/${index}.json`, updatedPost)
+    this.http.put(`https://aladanoangularproj-default-rtdb.asia-southeast1.firebasedatabase.app/posts/${index}.json`, updatedPost)
         .subscribe(response => {
             console.log(response);
         });

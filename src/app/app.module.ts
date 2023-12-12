@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { HttpClientModule } from '@angular/common/http';
- 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
@@ -15,6 +13,13 @@ import { Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { AngularFireModule } from '@angular/fire/compat';
+
+// Import Firebase
+
+import * as firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
 
 const routes: Routes = [
   {path: 'post-list', component: PostListComponent},
@@ -22,6 +27,19 @@ const routes: Routes = [
   {path: 'authentication', component: AuthComponent},
   {path: 'post-edit/:index', component: PostEditComponent},
 ]
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDh4cxk9CNZuk1axztwe3yj_IHZQETrgr8",
+  authDomain: "aladanoangularproj.firebaseapp.com",
+  databaseURL: "https://aladanoangularproj-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "aladanoangularproj",
+  storageBucket: "aladanoangularproj.appspot.com",
+  messagingSenderId: "1009179904048",
+  appId: "1:1009179904048:web:3c924c224d3d203f5745f5"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 @NgModule({
   declarations: [
@@ -40,7 +58,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]
