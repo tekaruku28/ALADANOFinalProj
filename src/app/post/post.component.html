@@ -17,7 +17,7 @@
 <div class=" post-container px-10 bg-white">
 
       <ul style="list-style: none;">
-        <li>{{post?.author}}</li>
+        <li class="post-title">{{post?.author}}</li>
         <li>{{post?.title}}</li>
         <li>{{post?.description}}</li>
         <li>{{post?.dateCreated}}</li>
@@ -34,16 +34,17 @@
     </button>
         </p>
     <!-- Display existing comments -->
-    
+    <p>Comments</p>
     <div class="comment">
-      <p>Comments</p>
+      
           <div *ngFor="let comment of post?.comments">
               <p>User:&nbsp;{{comment}}</p>
+              
           </div>
           <br><input type="text" [(ngModel)]="commentText" placeholder="Add comment"> &nbsp;
-          <button class="btn btn-secondary" (click)="addAComment(commentText)">Comment</button>
+          <button class="btn btn-secondary" (click)="addComment(commentText)">Comment</button>
       </div>
-  
+
     <button class="btn btn-primary" (click)="onEdit()">Edit</button>&nbsp;|&nbsp;
     <button class="btn btn-danger" (click)="delete()"> Delete</button>
   </div>

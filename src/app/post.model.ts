@@ -1,5 +1,6 @@
 export class Post{
     id: any;
+    likedBy: any;
     constructor(
         public title: string, 
         public imgPath: string,

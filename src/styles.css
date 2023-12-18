@@ -42,4 +42,26 @@ body{
   }
 
 
+
+
+
+
+
+
+  :root {
+    --background-color: white;
+    --text-color: black;
+  }
+  
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  
+  .dark-mode {
+    --background-color: black;
+    --text-color: white;
+  }
+
+
   

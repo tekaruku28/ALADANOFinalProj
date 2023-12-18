@@ -17,3 +17,6 @@ min-height: 100%;
 z-index: -1;
 }
 
+.post-title {
+    font-size: 50px; /* Change this to the size you want */
+}

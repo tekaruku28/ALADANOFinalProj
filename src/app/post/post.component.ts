@@ -15,6 +15,8 @@ export class PostComponent implements OnInit{
 @Input() index: number = 0;
 @Input() post?: Post;
   commentText: any;
+newComment: any;
+  userId!: string;
   
   constructor(private postService: PostService, private router: Router, private backEndService: BackEndService){
 
@@ -31,11 +33,11 @@ export class PostComponent implements OnInit{
     this.router.navigate(['/post-edit', this.index]);
   }
   onClick() {
-    this.postService.likePost(this.index)
+    this.postService.likePost(this.userId, this.index);
     }
   
     //comment part func
-    addAComment(commentText: string){
+    addComment(commentText: string){
       if(commentText.trim() !== ''){
         this.backEndService.addComment(this.index, commentText);
         this.commentText = '';

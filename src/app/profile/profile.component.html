@@ -1,0 +1,20 @@
+<div *ngIf="user">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Profile Picture</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <!-- Add more columns as needed -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><img [src]="user.photoURL" alt="Profile Picture"></td>
+          <td>{{ user.displayName }}</td>
+          <td>{{ user.email }}</td>
+          <!-- Add more cells as needed -->
+        </tr>
+      </tbody>
+    </table>
+  </div>

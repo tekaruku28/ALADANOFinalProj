@@ -20,6 +20,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {path: 'post-list', component: PostListComponent},
@@ -50,7 +51,8 @@ firebase.initializeApp(firebaseConfig);
     PostEditComponent,
     PostListComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +62,7 @@ firebase.initializeApp(firebaseConfig);
     ReactiveFormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(firebaseConfig)
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

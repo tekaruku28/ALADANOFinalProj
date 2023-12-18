@@ -15,6 +15,8 @@ export class PostService{
 
         // )
     ];
+    firestore: any;
+    http: any;
 
     getPost(){
         return this.listofPosts;
@@ -31,18 +33,37 @@ export class PostService{
     getSpecPost(index: number){
         return this.listofPosts[index];
     }
-    likePost(index: number){
-        this.listofPosts[index].numberOfLikes++;
-        this.listChangeEvent.emit(this.listofPosts);
-    }
+    likePost(userId: string, index: number) {
+        const post = this.listofPosts[index];
+        if (!post.likedBy) {
+          post.likedBy = [];
+        }
+        const userIndex = post.likedBy.indexOf(userId);
+        if (userIndex === -1) {
+          // User has not liked the post yet, so add their ID to the array
+          post.likedBy.push(userId);
+        } else {
+          // User has already liked the post, so remove their ID from the array
+          post.likedBy.splice(userIndex, 1);
+        }
+        post.numberOfLikes = post.likedBy.length;
+        this.http.put(`https://aladanoangularproj-default-rtdb.asia-southeast1.firebasedatabase.app/posts/${index}.json`, post)
+          .subscribe(() => {
+            console.log('Post updated in Firebase');
+          });
+      }
     
     addComment(index: number, comment: string) {
         if (!this.listofPosts[index].comments) {
             this.listofPosts[index].comments = [];
         }
         this.listofPosts[index].comments.push(comment);
+    
+        // Save the updated post with the new comment to Firebase
+        const postRef = this.firestore.collection('posts').doc(this.listofPosts[index].id);
+        postRef.update(this.listofPosts[index]);
     }
-
+    
     setPosts(listsOfPosts:Post[]){
         this.listofPosts = listsOfPosts;
         this.listChangeEvent.emit(listsOfPosts);   

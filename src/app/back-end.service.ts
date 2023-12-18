@@ -58,7 +58,7 @@ export class BackEndService {
         post.comments = [];
     }
     post.comments.push(comment);
-    this.http.put(`https://firebasedatabase.app/posts/${index}.json`, post)
+    this.http.put(`https://aladanoangularproj-default-rtdb.asia-southeast1.firebasedatabase.app/posts/${index}.json`, post)
       .subscribe(response => {
         console.log(response);
       });
