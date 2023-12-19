@@ -23,6 +23,7 @@ import 'firebase/auth';
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
+  {path: '/', component: LoginComponent}
   {path: 'post-list', component: PostListComponent},
   {path: 'post-add', component: PostEditComponent},
   {path: 'authentication', component: AuthComponent},
